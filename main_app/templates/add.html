@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block head %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/add.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="task-form-container">
+  <h2>Add New Task</h2>
+  <form method="post" class="task-form">
+    {% csrf_token %}
+
+    <div class="form-group">
+      <label for="title">Task Title *</label>
+      <input
+        type="text"
+        id="title"
+        name="title"
+        placeholder="What do you need to do?"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        name="description"
+        placeholder="Add any additional details..."
+        rows="3"
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="category">Category *</label>
+      <select id="category" name="category" required>
+        <option value="">Select a category</option>
+        {% for cat in categories %}
+          <option value="{{ cat.id }}">{{ cat.icon }} {{ cat.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="priority">Priority *</label>
+      <select id="priority" name="priority" required>
+        <option value="">Select a priority</option>
+        {% for p in priorities %}
+          <option value="{{ p.id }}">{{ p.level }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <button type="submit" class="btn-submit">➕ Add Task</button>
+  </form>
+</div>
+
+<ul class="todo-list">
+  {% for todo in tasks %}
+    <li class="todo-item {% if todo.completed %}completed-item{% endif %}">
+      <div class="task-details">
+        <strong>{{ todo.title }}</strong><br />
+        <span>{{ todo.category }}</span> • <span>Priority: {{ todo.priority }}</span>
+        {% if todo.description %}
+          <p>{{ todo.description }}</p>
+        {% endif %}
+      </div>
+    </li>
+  {% empty %}
+    <li>No tasks yet!</li>
+  {% endfor %}
+</ul>
+{% endblock %}

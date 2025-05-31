@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+  <h2>🧾 Task Dashboard</h2>
+
+ 
+
+  <ul class="todo-list">
+    {% for task in tasks %}
+      <li class="todo-item {% if task.completed %}completed-item{% endif %}">
+        <div class="task-header">
+          <strong>{{ task.title }}</strong>
+          <span class="category">{{ task.category }}</span>
+        </div>
+        {% if task.description %}
+          <p class="description">{{ task.description }}</p>
+        {% endif %}
+        <div class="task-meta">
+          <span>Priority: {{ task.priority }}</span>
+          <span>Created: {{ task.created_at|date:"M d, Y" }}</span>
+        </div>
+      </li>
+    {% empty %}
+      <li>No tasks found.</li>
+    {% endfor %}
+  </ul>
+</div>
+
+<div class="task-form-container" id="task-form-container" style="display: none;">
+  <h2>Add New Task</h2>
+  
+</div>
+{% endblock %}
