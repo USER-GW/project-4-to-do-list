@@ -1,0 +1,94 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %} {% block content %}
+<div class="dashboard">
+  <div class ="dashboard-header" >
+  <h1 class="dashboard-title">Dashboard</h1>
+   <h2> Todays Tasks </h2>
+   </div>
+  <div class="to-do-tiles">
+   
+  {% for task in tasks %}
+
+  <div class="tile task-tile">
+    <div class="tile-icon">
+      {% if task.category.icon %}
+        {{ task.category.icon }}
+      {% else %}
+        📝
+      {% endif %}
+    </div>
+  
+    <div class="tile-title">{{ task.title }}</div>
+    <div class="tile-category">{{ task.category }}</div>
+    <div class="tile-priority">Priority: {{ task.priority }}</div>
+    <div class="tile-status">
+      {% if task.completed %}
+        <span class="completed">✔️ Done</span>
+      {% else %}
+        <span class="pending">⏳ Pending</span>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+
+  {% if tasks|length == 0 %}
+  <div class="tile empty-tile">No tasks yet!</div>
+  {% endif %}
+</div>
+
+  <div> 
+        <h2>Completed Tasks</h2>
+    </div>
+  <div class="chart-container">
+    <canvas id="completedCategoryChart"></canvas>
+  </div>
+</div>
+
+{{ completed_category_labels|json_script:"completed-category-labels" }}
+{{ completed_category_data|json_script:"completed-category-data" }}
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const completedCategoryLabels = JSON.parse(
+      document.getElementById("completed-category-labels").textContent
+    );
+    const completedCategoryData = JSON.parse(
+      document.getElementById("completed-category-data").textContent
+    );
+    const ctx = document.getElementById("completedCategoryChart").getContext("2d");
+    const completedCategoryChart = new Chart(ctx, {
+      type: "doughnut",
+      data: {
+        labels: completedCategoryLabels,
+        datasets: [
+          {
+            data: completedCategoryData,
+            backgroundColor: [
+            "rgba(0, 128, 0, 1.0)",
+            "rgba(50, 205, 50, 1.0)",
+            "rgba(144, 238, 144, 0.6)",
+            "rgba(60, 179, 113, 0.6)",
+            "rgba(34, 139, 34, 1.0)",
+            "rgba(152, 251, 152, 0.6)",
+            ],
+            borderColor: "#fff",
+            borderWidth: 2,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: "60%",
+        plugins: {
+          legend: {
+            position: "bottom",
+          },
+        },
+      },
+    });
+  });
+</script>
+{% endblock %}

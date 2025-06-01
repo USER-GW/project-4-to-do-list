@@ -9,6 +9,7 @@ from datetime import timedelta
 
 
 
+
 class HomeView(TemplateView):
     template_name = 'home.html'
 
@@ -97,3 +98,29 @@ class EditToDoView(View):
         return redirect('home')
 
 
+class DashboardView(TemplateView):
+    template_name = 'dashboard.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        tasks = Task.objects.all().order_by('-id')
+        context['tasks'] = tasks
+
+        completed_count = tasks.filter(completed=True).count()
+        not_completed_count = tasks.filter(completed=False).count()
+        context['completed_data'] = [completed_count, not_completed_count]
+        context['completed_labels'] = ['Completed', 'Not Completed']
+
+        from collections import Counter
+        category_list = [str(t.category) for t in tasks if t.category]
+        category_counts = Counter(category_list)
+        context['category_labels'] = list(category_counts.keys())
+        context['category_data'] = list(category_counts.values())
+
+        # Only count completed tasks per category
+        completed_tasks = tasks.filter(completed=True)
+        completed_category_list = [str(t.category) for t in completed_tasks if t.category]
+        completed_category_counts = Counter(completed_category_list)
+        context['completed_category_labels'] = list(completed_category_counts.keys())
+        context['completed_category_data'] = list(completed_category_counts.values())
+        return context

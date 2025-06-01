@@ -6,7 +6,14 @@ body {
   color: #f0f0f0;
 }
 
-/* Header & nav */
+.logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  /* background-color: #4caf50; */
+  display: inline-block;
+  margin-right: 10px;
+}
 header {
   background-color: #191919;
   color: #ffffff;
@@ -46,7 +53,7 @@ header {
 
 /* Buttons */
 .btn-submit {
-    background-image: linear-gradient(135deg, #89f16f, #58cd8d);
+  background-image: linear-gradient(135deg, #89f16f, #58cd8d);
   color: #ffffff;
   border: none;
   padding: 0.5rem 1rem;
@@ -62,8 +69,8 @@ header {
 }
 
 .btn-dashboard {
-  background-image: linear-gradient(135deg, #966ff1, #eb7bcb);
-  color: #000000;
+  background-image: linear-gradient(135deg, #89f16f, #58cd8d);
+   color: #ffffff;
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 6px;
