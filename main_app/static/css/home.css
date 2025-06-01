@@ -1,17 +1,14 @@
+/* Container */
 .dashboard {
   max-width: 800px;
   margin: 2rem auto;
   background: #fff;
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.task-summary p {
-  margin: 0.3rem 0;
-  font-weight: 500;
-}
-
+/* Task list */
 .todo-list {
   list-style: none;
   padding: 0;
@@ -26,42 +23,125 @@
   margin-bottom: 1rem;
 }
 
+.todo-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+/* Checkbox */
+.complete-btn {
+  padding: 0.6rem;
+  font-size: 1.2rem;
+  background: #f0f0f0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Completed styling */
 .completed-item {
   background: #e6ffe6;
   text-decoration: line-through;
   opacity: 0.7;
 }
 
+/* Task details */
+.task-details {
+  flex: 1;
+}
+
+/* Header layout */
 .task-header {
   display: flex;
   justify-content: space-between;
-  font-size: 1.1rem;
+  align-items: flex-start;
   margin-bottom: 0.5rem;
 }
 
+/* Title and category stacked */
+.task-title-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.task-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.category {
+  font-size: 1rem;
+  margin-top: 0.2rem;
+}
+
+
+.dropdown-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 0 0.5rem;
+}
+
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 2rem;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  min-width: 120px;
+  z-index: 10;
+  padding: 0.5rem 0;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-btn {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #333;
+  border-radius: 6px;
+}
+
+.dropdown-btn:hover {
+  background: #f0f0f0;
+}
+
+.dropdown-btn.delete-btn {
+  color: #f44336;
+}
+
+.dropdown-btn.delete-btn:hover {
+  background: #ffe5e5;
+}
+
+/* Meta info */
 .task-meta {
   font-size: 0.85rem;
   color: #777;
-  margin-bottom: 0.5rem;
+  margin-top: 0.3rem;
 }
 
-.task-actions {
-  display: flex;
-  gap: 1rem;
-}
-
-.task-actions button {
-  padding: 0.4rem 0.8rem;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.delete-btn {
-  background: #f44336;
-  color: white;
-}
-
-.task-actions button:hover {
-  opacity: 0.9;
+/* Description */
+.description {
+  font-size: 0.95rem;
+  margin: 0.5rem 0;
 }

@@ -2,38 +2,83 @@
 {% load static %}
 
 {% block head %}
-  <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+<link rel="stylesheet" href="{% static 'css/home.css' %}" />
 {% endblock %}
 
 {% block content %}
 <div class="dashboard">
-  <h2>🧾 Task Dashboard</h2>
-
- 
+  <h2>To Do — {% now "M d, Y" %}</h2>
 
   <ul class="todo-list">
     {% for task in tasks %}
-      <li class="todo-item {% if task.completed %}completed-item{% endif %}">
-        <div class="task-header">
-          <strong>{{ task.title }}</strong>
-          <span class="category">{{ task.category }}</span>
-        </div>
-        {% if task.description %}
+    <li class="todo-item {% if task.completed %}completed-item{% endif %}" data-task-id="{{ task.id }}">
+      <div class="todo-content">
+
+        <!-- Checkbox -->
+        <form method="POST" action="{% url 'complete_task' task.id %}">
+          {% csrf_token %}
+          <button type="submit" class="complete-btn">✅</button>
+        </form>
+
+        <!-- Task Details -->
+        <div class="task-details">
+
+          <!-- Header: Title + Category (stacked) and Dropdown (right) -->
+          <div class="task-header">
+            <div class="task-title-section">
+              <strong class="task-title">{{ task.title }}</strong>
+              <span class="category">{{ task.category }}</span>
+            </div>
+
+            <div class="task-actions dropdown-wrapper">
+              <button
+                type="button"
+                class="dropdown-toggle"
+                onclick="this.nextElementSibling.classList.toggle('show')"
+              >
+                ⋮
+              </button>
+              <div class="dropdown-menu">
+                <form method="GET" action="{% url 'edit_task' task.id %}">
+                  <button type="submit" class="dropdown-btn">Edit</button>
+                </form>
+                <form method="POST" action="{% url 'delete_task' task.id %}">
+                  {% csrf_token %}
+                  <button type="submit" class="dropdown-btn delete-btn">Delete</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          {% if task.description %}
           <p class="description">{{ task.description }}</p>
-        {% endif %}
-        <div class="task-meta">
-          <span>Priority: {{ task.priority }}</span>
-          <span>Created: {{ task.created_at|date:"M d, Y" }}</span>
+          {% endif %}
+
+          <div class="task-meta">
+            <span>Priority: {{ task.priority }}</span>
+            <span>Created: {{ task.created_at|date:"M d, Y" }}</span>
+          </div>
         </div>
-      </li>
+      </div>
+    </li>
     {% empty %}
-      <li>No tasks found.</li>
+    <li>No tasks found.</li>
     {% endfor %}
   </ul>
 </div>
 
-<div class="task-form-container" id="task-form-container" style="display: none;">
+<div class="task-form-container" id="task-form-container" style="display: none">
   <h2>Add New Task</h2>
-  
 </div>
+
+<!-- JS to close dropdown when clicking outside -->
+<script>
+  document.addEventListener("click", function (event) {
+    document.querySelectorAll(".dropdown-menu.show").forEach(function (menu) {
+      if (!menu.parentElement.contains(event.target)) {
+        menu.classList.remove("show");
+      }
+    });
+  });
+</script>
 {% endblock %}
