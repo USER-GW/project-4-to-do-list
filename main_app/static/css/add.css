@@ -1,42 +1,58 @@
+/* Base page style */
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: #f9f9f9;
-  padding: 2rem;
-  color: #333;
+  background: #121212;
+  color: #f0f0f0;
 }
 
+/* Form container */
 .task-form-container {
-  background: #ffffff;
+  background: #1e1e1e;
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
   margin-bottom: 2rem;
 }
 
+/* Form group spacing */
 .task-form .form-group {
   margin-bottom: 1rem;
 }
 
+/* Labels */
 .task-form label {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: bold;
+  color: #ddd;
 }
 
+/* Input fields, selects, textareas */
 .task-form input[type="text"],
 .task-form textarea,
 .task-form select {
   width: 100%;
   padding: 0.6rem;
-  border: 1px solid #ccc;
+  background: #2c2c2c;
+  border: 1px solid #555;
+  color: #f0f0f0;
   border-radius: 8px;
   font-size: 1rem;
 }
 
-.priority-group label {
-  margin-right: 1rem;
+.task-form input[type="text"]::placeholder,
+.task-form textarea::placeholder {
+  color: #888;
 }
 
+/* Priority radio group */
+.priority-group label {
+  margin-right: 1rem;
+  font-weight: normal;
+  color: #ccc;
+}
+
+/* Submit button */
 .btn-submit {
   background-color: #4caf50;
   color: white;
@@ -52,25 +68,27 @@ body {
   background-color: #45a049;
 }
 
+/* Task list styling (if previewed below the form) */
 .todo-list {
   list-style: none;
   padding: 0;
 }
 
 .todo-item {
-  background: #fff;
+  background: #2a2a2a;
   margin-bottom: 0.5rem;
   padding: 0.75rem 1rem;
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
 .todo-item span {
   flex-grow: 1;
   margin-left: 0.75rem;
+  color: #f0f0f0;
 }
 
 .completed-item span {
@@ -78,14 +96,15 @@ body {
   color: #888;
 }
 
+/* Delete button */
 .delete-btn {
   background: none;
   border: none;
-  color: #cc0000;
+  color: #f44336;
   font-size: 1.2rem;
   cursor: pointer;
 }
 
 .delete-btn:hover {
-  color: #a30000;
+  color: #b71c1c;
 }

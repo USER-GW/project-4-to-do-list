@@ -1,14 +1,14 @@
-/* Container */
+/* Dashboard container */
 .dashboard {
   max-width: 800px;
   margin: 2rem auto;
-  background: #fff;
+  background: #1e1e1e;
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
-/* Task list */
+/* Task list structure */
 .todo-list {
   list-style: none;
   padding: 0;
@@ -17,66 +17,93 @@
 
 .todo-item {
   padding: 1rem;
-  border-bottom: 1px solid #eee;
-  background: #fafafa;
+  border-bottom: 1px solid #333;
+  background: #2a2a2a;
   border-radius: 8px;
   margin-bottom: 1rem;
 }
 
 .todo-content {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 1rem;
 }
 
-/* Checkbox */
+/* Checkbox button */
 .complete-btn {
   padding: 0.6rem;
   font-size: 1.2rem;
-  background: #f0f0f0;
+  background: #3a3a3a;
+  color: #4caf50;
   border: none;
   border-radius: 8px;
   cursor: pointer;
 }
 
-/* Completed styling */
+.complete-btn:hover {
+  background: #4a4a4a;
+}
+
+/* Completed item */
 .completed-item {
-  background: #e6ffe6;
+  background: #234325;
   text-decoration: line-through;
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 /* Task details */
 .task-details {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 25px;
 }
 
-/* Header layout */
+/* Header with title and actions */
 .task-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: 0.5rem;
 }
 
-/* Title and category stacked */
 .task-title-section {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.4rem;
 }
 
 .task-title {
   font-size: 1.1rem;
   font-weight: bold;
+  color: #ffffff;
 }
 
 .category {
-  font-size: 1rem;
-  margin-top: 0.2rem;
+  font-size: 0.8rem;
+  background-color: #333;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  color: #c0ffb3;
+  border: 1px solid #555;
 }
 
+/* Meta info */
+.task-meta {
+  font-size: 0.85rem;
+  color: #bbb;
+  margin-top: 0.3rem;
+}
 
+/* Description text */
+.description {
+  font-size: 0.95rem;
+  margin: 0.5rem 0;
+  color: #ddd;
+}
+
+/* Dropdown wrapper */
 .dropdown-wrapper {
   position: relative;
   display: inline-block;
@@ -86,20 +113,21 @@
   background: none;
   border: none;
   font-size: 1.3rem;
+  color: #ccc;
   cursor: pointer;
   padding: 0 0.5rem;
 }
 
-
+/* Dropdown menu */
 .dropdown-menu {
   display: none;
   position: absolute;
   right: 0;
   top: 2rem;
-  background: #fff;
-  border: 1px solid #eee;
+  background: #2c2c2c;
+  border: 1px solid #444;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   min-width: 120px;
   z-index: 10;
   padding: 0.5rem 0;
@@ -117,12 +145,12 @@
   padding: 0.5rem 1rem;
   font-size: 1rem;
   cursor: pointer;
-  color: #333;
+  color: #eee;
   border-radius: 6px;
 }
 
 .dropdown-btn:hover {
-  background: #f0f0f0;
+  background: #444;
 }
 
 .dropdown-btn.delete-btn {
@@ -130,18 +158,33 @@
 }
 
 .dropdown-btn.delete-btn:hover {
-  background: #ffe5e5;
+  background: #4a1c1c;
 }
 
-/* Meta info */
-.task-meta {
-  font-size: 0.85rem;
-  color: #777;
-  margin-top: 0.3rem;
+
+.date-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
-/* Description */
-.description {
-  font-size: 0.95rem;
-  margin: 0.5rem 0;
+.date-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.nav-arrow {
+  font-size: 1.6rem;
+  text-decoration: none;
+  color: #4caf50;
+  font-weight: bold;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.nav-arrow:hover {
+  background-color: rgba(76, 175, 80, 0.15);
 }

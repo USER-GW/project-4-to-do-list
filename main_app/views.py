@@ -4,6 +4,8 @@ from django.views.generic import TemplateView
 from .models import Category, Priority, Task
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.utils import timezone
+from datetime import timedelta
 
 
 
@@ -12,7 +14,15 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['tasks'] = Task.objects.all().order_by('-id')
+        date_str = self.request.GET.get('date')
+        if date_str:
+            selected_date = timezone.datetime.strptime(date_str, '%Y-%m-%d').date()
+        else:
+            selected_date = timezone.now().date()
+        context['selected_date'] = selected_date
+        context['tasks'] = Task.objects.filter(due_date=selected_date).order_by('-id')
+        context['prev_date'] = selected_date - timedelta(days=1)
+        context['next_date'] = selected_date + timedelta(days=1)
         return context
 
 
@@ -37,14 +47,14 @@ class AddToDoView(View):
         priority = Priority.objects.filter(id=priority_id).first()
 
         Task.objects.create(
-            user=None,  # Or use request.user if auth is added
+            user=None, 
             title=title,
             description=description,
             category=category,
             priority=priority
         )
 
-        return redirect('home')  # ✅ Redirect to home after task is added
+        return redirect('home')  # 
 
 
 def complete_task(request, task_id):

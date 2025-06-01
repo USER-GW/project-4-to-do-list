@@ -2,12 +2,17 @@
 {% load static %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/home.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/home.css' %}" />
 {% endblock %}
 
 {% block content %}
 <div class="dashboard">
-  <h2>To Do — {% now "M d, Y" %}</h2>
+ <div class="date-header">
+  <a href="?date={{ previous_date }}" class="nav-arrow">←</a>
+  <h2>To Do — {{ selected_date|date:"M d, Y" }}</h2>
+  <a href="?date={{ next_date }}" class="nav-arrow">→</a>
+</div>
+
 
   <ul class="todo-list">
     {% for task in tasks %}
@@ -22,15 +27,13 @@
 
         <!-- Task Details -->
         <div class="task-details">
-
-          <!-- Header: Title + Category (stacked) and Dropdown (right) -->
           <div class="task-header">
             <div class="task-title-section">
               <strong class="task-title">{{ task.title }}</strong>
               <span class="category">{{ task.category }}</span>
             </div>
 
-            <div class="task-actions dropdown-wrapper">
+            <div class="dropdown-wrapper">
               <button
                 type="button"
                 class="dropdown-toggle"
@@ -67,11 +70,6 @@
   </ul>
 </div>
 
-<div class="task-form-container" id="task-form-container" style="display: none">
-  <h2>Add New Task</h2>
-</div>
-
-<!-- JS to close dropdown when clicking outside -->
 <script>
   document.addEventListener("click", function (event) {
     document.querySelectorAll(".dropdown-menu.show").forEach(function (menu) {
