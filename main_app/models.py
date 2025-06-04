@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 
+def get_today():
+    return timezone.now().date()
 
 class Category(models.Model):
     name = models.CharField(max_length=50, unique=True)
@@ -24,6 +26,7 @@ class Task(models.Model):
     description = models.TextField(blank=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     priority = models.ForeignKey(Priority, on_delete=models.SET_NULL, null=True)
+    date = models.DateField(default=get_today)
     completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     due_date = models.DateField(default=timezone.now)

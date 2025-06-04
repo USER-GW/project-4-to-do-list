@@ -1,11 +1,11 @@
-/* Base page style */
+
 body {
   font-family: 'Segoe UI', sans-serif;
   background: #121212;
   color: #f0f0f0;
 }
 
-/* Form container */
+
 .task-form-container {
   background: #1e1e1e;
   padding: 1.5rem;
@@ -14,12 +14,12 @@ body {
   margin-bottom: 2rem;
 }
 
-/* Form group spacing */
+
 .task-form .form-group {
   margin-bottom: 1rem;
 }
 
-/* Labels */
+
 .task-form label {
   display: block;
   margin-bottom: 0.5rem;
@@ -27,7 +27,7 @@ body {
   color: #ddd;
 }
 
-/* Input fields, selects, textareas */
+
 .task-form input[type="text"],
 .task-form textarea,
 .task-form select {
@@ -45,14 +45,14 @@ body {
   color: #888;
 }
 
-/* Priority radio group */
+
 .priority-group label {
   margin-right: 1rem;
   font-weight: normal;
   color: #ccc;
 }
 
-/* Submit button */
+
 .btn-submit {
   background-color: #4caf50;
   color: white;
@@ -68,7 +68,7 @@ body {
   background-color: #45a049;
 }
 
-/* Task list styling (if previewed below the form) */
+
 .todo-list {
   list-style: none;
   padding: 0;

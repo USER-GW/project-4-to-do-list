@@ -52,14 +52,14 @@
   background: #4a4a4a;
 }
 
-/* Completed item */
+
 .completed-item {
   background: #234325;
   text-decoration: line-through;
   opacity: 0.6;
 }
 
-/* Task details */
+
 .task-details {
   flex: 1;
   display: flex;
@@ -68,7 +68,7 @@
   margin-left: 25px;
 }
 
-/* Header with title and actions */
+
 .task-header {
   display: flex;
   justify-content: space-between;
@@ -98,21 +98,21 @@
   border: 1px solid #555;
 }
 
-/* Meta info */
+
 .task-meta {
   font-size: 0.85rem;
   color: #bbb;
   margin-top: 0.3rem;
 }
 
-/* Description text */
+
 .description {
   font-size: 0.95rem;
   margin: 0.5rem 0;
   color: #ddd;
 }
 
-/* Dropdown wrapper */
+
 .dropdown-wrapper {
   position: relative;
   display: inline-block;
@@ -127,7 +127,7 @@
   padding: 0 0.5rem;
 }
 
-/* Dropdown menu */
+
 .dropdown-menu {
   display: none;
   position: absolute;
