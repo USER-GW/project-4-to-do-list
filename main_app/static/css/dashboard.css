@@ -36,7 +36,7 @@ body {
 
 .dashboard-header h2 {
   font-size: 1.3rem;
-  color: #c8c8c8;
+  color: #ffffff;
   margin-top: 0.2rem;
   margin-bottom: 0.5rem;
   font-weight: 500;
@@ -52,7 +52,7 @@ body {
 
 .date-nav-btn {
   background: #fff;
-  color: #43e97b;
+  color: #4fe481;
   border: 1px solid #43e97b;
   border-radius: 20px;
   padding: 6px 18px;
