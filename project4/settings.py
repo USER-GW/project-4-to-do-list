@@ -28,9 +28,12 @@ SECRET_KEY = 'django-insecure-32605k(txxxhg=dq03q@iq=nx^ka1fnek#j5bpar&ffw3ui2s*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "localhost").split(",")
+# ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "localhost").split(",")
 
 
+DATABASES = {
+    'default': dj_database_url.config(conn_max_age=600)
+}
 
 # Application definition
 
